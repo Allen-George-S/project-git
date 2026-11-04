@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FIFA World Cup 2026 - Jersey & Kit Collection</title>
+    <style>
+        :root {
+            --primary: #0a192f;
+            --accent: #00f2fe;
+            --accent-gold: #ffb703;
+            --bg-dark: #0f172a;
+            --card-bg: #1e293b;
+            --text-light: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, var(--accent), var(--accent-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e293b 0%, #0f172a 100%);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        /* Filter Controls */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: var(--card-bg);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent);
+            color: var(--primary);
+            border-color: var(--accent);
+        }
+
+        /* Kit Grid */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem 4rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            position: relative;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0, 242, 254, 0.15);
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(15, 23, 42, 0.8);
+            padding: 0.2rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            border: 1px solid var(--border-color);
+        }
+
+        .card-img-wrapper {
+            height: 240px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.2) 100%);
+            padding: 1.5rem;
+        }
+
+        /* SVG Kit Graphics */
+        .jersey-svg {
+            width: 140px;
+            height: 160px;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.4));
+            transition: transform 0.3s;
+        }
+
+        .card:hover .jersey-svg {
+            transform: scale(1.05);
+        }
+
+        .card-info {
+            padding: 1.5rem;
+        }
+
+        .card-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-info .brand {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-info p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1.2rem;
+        }
+
+        .btn-view {
+            width: 100%;
+            background: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.6rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-view:hover {
+            background: var(--accent);
+            color: var(--primary);
+        }
+
+        /* Tech Spec Section */
+        .tech-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .tech-section h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--accent);
+        }
+
+        .tech-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .tech-table th, .tech-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tech-table th {
+            color: var(--accent-gold);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 90%;
+            border: 1px solid var(--accent);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">WC2026 KITS</div>
+        <ul class="nav-links">
+            <li><a href="#jerseys">Jerseys</a></li>
+            <li><a href="#specs">Specs</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>FIFA World Cup 2026 Kits</h1>
+        <p>Explore the official home and away jerseys representing 48 nations in Canada, Mexico, and the USA.</p>
+        
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterKits('all')">All Brands</button>
+            <button class="filter-btn" onclick="filterKits('nike')">Nike</button>
+            <button class="filter-btn" onclick="filterKits('adidas')">Adidas</button>
+            <button class="filter-btn" onclick="filterKits('puma')">Puma</button>
+        </div>
+    </section>
+
+    <!-- Main Content Container -->
+    <div class="container" id="jerseys">
+        <div class="grid" id="kitGrid">
+
+            <!-- Argentina -->
+            <div class="card" data-brand="adidas">
+                <span class="card-badge">Home</span>
+                <div class="card-img-wrapper">
+                    <svg class="jersey-svg" viewBox="0 0 100 100">
+                        <path d="M 30,10 L 40,0 L 60,0 L 70,10 L 90,25 L 80,45 L 70,35 L 70,95 L 30,95 L 30,35 L 20,45 L 10,25 Z" fill="#75AADB"/>
+                        <rect x="40" y="0" width="7" height="95" fill="#FFFFFF"/>
+                        <rect x="53" y="0" width="7" height="95" fill="#FFFFFF"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>Argentina</h3>
+                    <div class="brand">Adidas • Home Kit</div>
+                    <p>Classic sky blue and white stripes with gold champions star badges.</p>
+                    <button class="btn-view" onclick="openModal('Argentina', 'Adidas', 'Authentic Heat.RDY Fabric', '$150')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Brazil -->
+            <div class="card" data-brand="nike">
+                <span class="card-badge">Home</span>
+                <div class="card-img-wrapper">
+                    <svg class="jersey-svg" viewBox="0 0 100 100">
+                        <path d="M 30,10 L 40,0 L 60,0 L 70,10 L 90,25 L 80,45 L 70,35 L 70,95 L 30,95 L 30,35 L 20,45 L 10,25 Z" fill="#FFDC02"/>
+                        <path d="M 40,0 L 60,0 L 55,12 L 45,12 Z" fill="#009B3A"/>
+                        <rect x="15" y="30" width="10" height="5" fill="#009B3A"/>
+                        <rect x="75" y="30" width="10" height="5" fill="#009B3A"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>Brazil</h3>
+                    <div class="brand">Nike • Home Kit</div>
+                    <p>Traditional Canary Yellow with dynamic green trim accents.</p>
+                    <button class="btn-view" onclick="openModal('Brazil', 'Nike', 'Dri-FIT ADV Technology', '$150')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Portugal -->
+            <div class="card" data-brand="puma">
+                <span class="card-badge">Home</span>
+                <div class="card-img-wrapper">
+                    <svg class="jersey-svg" viewBox="0 0 100 100">
+                        <path d="M 30,10 L 40,0 L 60,0 L 70,10 L 90,25 L 80,45 L 70,35 L 70,95 L 30,95 L 30,35 L 20,45 L 10,25 Z" fill="#C8102E"/>
+                        <path d="M 70,35 L 70,95 L 30,95 Z" fill="#006600" opacity="0.3"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>Portugal</h3>
+                    <div class="brand">Puma • Home Kit</div>
+                    <p>Deep crimson base featuring sleek geometric pattern accents.</p>
+                    <button class="btn-view" onclick="openModal('Portugal', 'Puma', 'ULTRAWEAVE Performance', '$140')">View Details</button>
+                </div>
+            </div>
+
+            <!-- USA -->
+            <div class="card" data-brand="nike">
+                <span class="card-badge">Away</span>
+                <div class="card-img-wrapper">
+                    <svg class="jersey-svg" viewBox="0 0 100 100">
+                        <path d="M 30,10 L 40,0 L 60,0 L 70,10 L 90,25 L 80,45 L 70,35 L 70,95 L 30,95 L 30,35 L 20,45 L 10,25 Z" fill="#0A192F"/>
+                        <circle cx="50" cy="50" r="15" fill="#CC0000" opacity="0.4"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>USA</h3>
+                    <div class="brand">Nike • Away Kit</div>
+                    <p>Dark navy base with a woven star-grid texture pattern.</p>
+                    <button class="btn-view" onclick="openModal('USA', 'Nike', 'Dri-FIT ADV Technology', '$150')">View Details</button>
+                </div>
+            </div>
+
+            <!-- France -->
+            <div class="card" data-brand="nike">
+                <span class="card-badge">Away</span>
+                <div class="card-img-wrapper">
+                    <svg class="jersey-svg" viewBox="0 0 100 100">
+                        <path d="M 30,10 L 40,0 L 60,0 L 70,10 L 90,25 L 80,45 L 70,35 L 70,95 L 30,95 L 30,35 L 20,45 L 10,25 Z" fill="#E0F7FA"/>
+                        <path d="M 40,0 L 60,0 L 50,15 Z" fill="#B87333"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>France</h3>
+                    <div class="brand">Nike • Away Kit ("Liberté")</div>
+                    <p>Light blue-green base paired with metallic copper accents.</p>
+                    <button class="btn-view" onclick="openModal('France', 'Nike', 'Dri-FIT ADV High-Speed', '$150')">View Details</button>
+                </div>
+            </div>
+
+            <!-- Germany -->
+            <div class="card" data-brand="adidas">
+                <span class="card-badge">Home</span>
+                <div class="card-img-wrapper">
+                    <svg class="jersey-svg" viewBox="0 0 100 100">
+                        <path d="M 30,10 L 40,0 L 60,0 L 70,10 L 90,25 L 80,45 L 70,35 L 70,95 L 30,95 L 30,35 L 20,45 L 10,25 Z" fill="#FFFFFF"/>
+                        <rect x="30" y="45" width="40" height="6" fill="#000000"/>
+                        <rect x="30" y="51" width="40" height="6" fill="#DD0000"/>
+                        <rect x="30" y="57" width="40" height="6" fill="#FFCC00"/>
+                    </svg>
+                </div>
+                <div class="card-info">
+                    <h3>Germany</h3>
+                    <div class="brand">Adidas • Home Kit</div>
+                    <p>Pure white body accented with national flag shoulder gradients.</p>
+                    <button class="btn-view" onclick="openModal('Germany', 'Adidas', 'Heat.RDY Mesh Weave', '$150')">View Details</button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Technical Specification Section -->
+        <section class="tech-section" id="specs">
+            <h2>Authentic vs Replica Specifications</h2>
+            <table class="tech-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Player Authentic</th>
+                        <th>Fan Replica</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Fit</strong></td>
+                        <td>Athletic Slim / Compressive</td>
+                        <td>Standard Relaxed Fit</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Fabric</strong></td>
+                        <td>Ultra-lightweight mesh weave</td>
+                        <td>Durable standard polyester</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Crests</strong></td>
+                        <td>Heat-applied lightweight synthetic</td>
+                        <td>Woven embroidered badge</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Pricing</strong></td>
+                        <td>$140 – $160</td>
+                        <td>$90 – $110</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <!-- Details Modal -->
+    <div class="modal" id="kitModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <h2 id="modalTitle">Team Kit</h2>
+            <p id="modalBrand" style="color: var(--accent); margin-bottom: 1rem;"></p>
+            <p style="margin-bottom: 0.5rem;"><strong>Fabric Tech:</strong> <span id="modalTech"></span></p>
+            <p style="margin-bottom: 1rem;"><strong>Estimated Retail:</strong> <span id="modalPrice"></span></p>
+            <button class="btn-view" style="background: var(--accent); color: var(--primary);" onclick="closeModal()">Close Preview</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="about">
+        <p>FIFA World Cup 2026 Kits Showcase • Interactive Fan Concept Hub</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        function filterKits(brand) {
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                if (brand === 'all' || card.getAttribute('data-brand') === brand) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        function openModal(team, brand, tech, price) {
+            document.getElementById('modalTitle').innerText = team + ' WC 2026 Jersey';
+            document.getElementById('modalBrand').innerText = 'Official Kit by ' + brand;
+            document.getElementById('modalTech').innerText = tech;
+            document.getElementById('modalPrice').innerText = price;
+            document.getElementById('kitModal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('kitModal').style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('kitModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
